@@ -14,13 +14,16 @@ $resultado = mysqli_query($conexion, $consulta);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modificar PQRS</title>
     <!--Biblioteca de bootstrap CSS-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <script src="https://kit.fontawesome.com/b80bf1e3ae.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">    <script src="https://kit.fontawesome.com/b80bf1e3ae.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <form action="../controlador/modificarPQRS.php" method="post" class="col-4 m-auto p-3" onsubmit="return validarFormulario();">
-        <h3 class="text-center text-secondary">Modificar PQRS</h3>
+<header class="bg-dark text-white">
+        <h2 class="p-2"><i class="fa-solid fa-car"></i> Nowtify Logist</h2>
+    </header>
+    <div>
+    <h3 class="text-center p-3">Modificar PQRS</h3>
+    <form action="../controlador/modificarPQRS.php" method="post" class="col-4 shadow-lg bg-body m-auto p-3" onsubmit="return validarFormulario();">
         <input type="hidden" name="id" value="<?= $_GET["id"] ?>">
         <div id="mensajeError" style="color: red;"></div>
         <?php
@@ -54,6 +57,7 @@ $resultado = mysqli_query($conexion, $consulta);
         <button type="submit" class="btn btn-primary" name="btnEnviar" value="ok">Enviar</button>
         </div>
     </form>
+    
     <div class="col-8 m-auto p-5">
             <table class="table table-hover">
                 <?php
@@ -121,15 +125,13 @@ $resultado = mysqli_query($conexion, $consulta);
         }
     </script>
 
-
     <!--Jquery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!--js de bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="./js/main.js"></script>
     <!-- Agrega los enlaces a las bibliotecas de Bootstrap y jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 </body>
-
 </html>

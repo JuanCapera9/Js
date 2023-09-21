@@ -5,22 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crud PQRS</title>
-    <!--Biblioteca de bootstrap CSS-->
+    <!-- Biblioteca de bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/b80bf1e3ae.js" crossorigin="anonymous"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="./css/dashboard.css">
-    <script src="./JS/Dashboard.js"></script>
-
 </head>
 
 <body>
-    <h1 class="text-center p-3">PQRS Dashboard</h1>
+    <header class="bg-dark text-white">
+        <h2 class="p-2"><i class="fa-solid fa-car"></i> Nowtify Logist</h2>
+    </header>
     <div class="container-fluid row">
-        <form action="controlador/crearPQRS.php" method="post" class="col-4 p-3" id="pqrsForm">
+        <form action="controlador/crearPQRS.php" method="post" class="col-4 text- p-3" id="pqrsForm">
             <h3 class="text-center text-secondary">Registro PQRS</h3>
 
-            <!--Consultar cliente-->
+            <!-- Consultar cliente -->
             <label class="form-label">Cedula Cliente</label>
             <div class="container">
                 <div class="input-group mb-3">
@@ -32,7 +31,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="mb-3">
                 <label class="form-label">Id Cliente</label>
                 <input type="text" class="form-control" name="idCliente" id="idCliente" placeholder="IdCliente">
@@ -58,7 +56,7 @@
                 <textarea class="form-control" name="descripcionPQRS" id="descripcionPQRS" rows="5" placeholder="Cuentanos tu experiencia con nosotros..."></textarea>
                 <p id="descripcionError" style="color: red;"></p>
             </div>
-            <button type="button" onclick="validarFormulario();" class="btn btn-primary" name="btnEnviar" value="ok">Enviar</button>
+            <button type="button" onclick="validarFormulario();" class="btn btn-dark" name="btnEnviar" value="ok">Enviar</button>
         </form>
 
         <div class="col-8 p-5">
@@ -72,7 +70,7 @@
                 $resultado = mysqli_query($conexion, $consulta);
                 $filas = mysqli_num_rows($resultado);
                 ?>
-                <thead class="table-info">
+                <thead class="table-primary">
                     <tr>
                         <th scope="col">Id</th>
                         <th scope="col">Categoria</th>
@@ -142,42 +140,41 @@
     </div>
 
     <script>
-    function validarFormulario() {
-        var idClienteRegex = /^[0-9]+$/;
-        var idCliente = document.getElementById("idCliente").value;
-        var descripcion = document.getElementById("descripcionPQRS").value;
-        var tituloPqrs = document.getElementById("tituloPqrs").value;
+        function validarFormulario() {
+            var idClienteRegex = /^[0-9]+$/;
+            var idCliente = document.getElementById("idCliente").value;
+            var descripcion = document.getElementById("descripcionPQRS").value;
+            var tituloPqrs = document.getElementById("tituloPqrs").value;
 
-        // Validación del campo "Id Cliente"
-        if (!idClienteRegex.test(idCliente)) {
-            document.getElementById("idClienteError").innerText = "El ID del cliente debe contener solo números.";
-            return;
-        } else {
-            document.getElementById("idClienteError").innerText = "";
+            // Validación del campo "Id Cliente"
+            if (!idClienteRegex.test(idCliente)) {
+                document.getElementById("idClienteError").innerText = "El ID del cliente debe contener solo números o no puede estar vacio.";
+                return;
+            } else {
+                document.getElementById("idClienteError").innerText = "";
+            }
+
+            // Validación del campo "Descripción"
+            if (descripcion.trim() === "") {
+                document.getElementById("descripcionError").innerText = "La descripción no puede estar vacía.";
+                return;
+            } else {
+                document.getElementById("descripcionError").innerText = "";
+            }
+
+            // Validación del campo "Titulo"
+            var tituloRegex = /^[a-zA-Z]/; // Al menos tres letras
+            if (!tituloRegex.test(tituloPqrs)) {
+                document.getElementById("tituloError").innerText = "El campo 'Titulo' debe contener al menos tres letras.";
+                return;
+            } else {
+                document.getElementById("tituloError").innerText = "";
+            }
+
+            // Si todas las validaciones pasan, envía el formulario
+            document.getElementById("pqrsForm").submit();
         }
-
-        // Validación del campo "Descripción"
-        if (descripcion.trim() === "") {
-            document.getElementById("descripcionError").innerText = "La descripción no puede estar vacía.";
-            return;
-        } else {
-            document.getElementById("descripcionError").innerText = "";
-        }
-
-        // Validación del campo "Titulo"
-        var tituloRegex = /^[a-zA-Z]{3,}$/; // Al menos tres letras
-        if (!tituloRegex.test(tituloPqrs)) {
-            document.getElementById("tituloError").innerText = "El campo 'Titulo' debe contener al menos tres letras.";
-            return;
-        } else {
-            document.getElementById("tituloError").innerText = "";
-        }
-
-        // Si todas las validaciones pasan, envía el formulario
-        document.getElementById("pqrsForm").submit();
-    }
-</script>
-
+    </script>
 
     <script>
         function consultarCliente() {
@@ -197,7 +194,6 @@
                     $('#resultadoModal').modal('show');
                 },
             });
-
         }
     </script>
 
@@ -207,7 +203,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     <script src="./js/main.js"></script>
     <!-- Agrega los enlaces a las bibliotecas de Bootstrap -->
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 </body>
 
